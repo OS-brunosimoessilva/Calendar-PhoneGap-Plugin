@@ -557,6 +557,11 @@ public class Calendar extends CordovaPlugin {
       final JSONObject argObject = args.getJSONObject(0);
       final JSONObject argOptionsObject = argObject.getJSONObject("options");
 
+      if(argObject.getLong("startTime") > argObject.getLong("endTime")){
+        callback.error("The start date must be before the end date");
+        return;
+      }
+
       cordova.getThreadPool().execute(new Runnable() {
         @Override
         public void run() {
