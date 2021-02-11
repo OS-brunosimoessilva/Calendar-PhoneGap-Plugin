@@ -474,10 +474,19 @@
   NSNumber* date = [options objectForKey:@"date"];
 
   [self.commandDelegate runInBackground: ^{
+    NSDate *openDate;
     NSTimeInterval _startInterval = [date doubleValue] / 1000; // strip millis
-    NSDate *openDate = [NSDate dateWithTimeIntervalSince1970:_startInterval];
+      
+    //date comes with negative value, corresponds to either empty date field or dates below 1970, use current date
+    if ([date doubleValue] < 0){
+      openDate = [NSDate date];
+    }
+    else if ([date doubleValue] > 0){
+     openDate = [NSDate dateWithTimeIntervalSince1970:_startInterval];
+    }
+      
     NSInteger interval = [openDate timeIntervalSinceReferenceDate];
-
+      
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"calshow:%ld", interval]];
     [[UIApplication sharedApplication] openURL:url];
   }];
