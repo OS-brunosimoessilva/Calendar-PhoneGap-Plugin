@@ -394,7 +394,7 @@
     }
     if (event.notes != nil || event.URL != nil) {
       NSString *notes = event.notes ?: @"";
-      NSString *url = (NSString*)event.URL ?: @"";
+      NSString *url = event.URL.absoluteString ?: @"";
       NSString *notesWithURL = [NSString stringWithFormat:@"%@ %@", notes, url];
       NSString *trimmed = [notesWithURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
       [entry setObject:trimmed forKey:@"message"];
