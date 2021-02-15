@@ -392,7 +392,7 @@
     if (event.location != nil) {
       [entry setObject:event.location forKey:@"location"];
     }
-    NSString *notesWithURL = [NSString stringWithFormat:@"%@%@", event.notes, event.URL];
+    NSString *notesWithURL = [NSString stringWithFormat:@"%@ %@", event.notes, event.URL];
     if (event.notes != nil) {
       [entry setObject:notesWithURL forKey:@"message"];
     }
