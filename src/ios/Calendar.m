@@ -392,8 +392,9 @@
     if (event.location != nil) {
       [entry setObject:event.location forKey:@"location"];
     }
+    NSString *notesWithURL = [NSString stringWithFormat:@"%@%@", event.notes, event.URL];
     if (event.notes != nil) {
-      [entry setObject:event.notes forKey:@"message"];
+      [entry setObject:notesWithURL forKey:@"message"];
     }
     if (event.attendees != nil) {
       NSMutableArray * attendees = [[NSMutableArray alloc] init];
