@@ -392,8 +392,15 @@
     if (event.location != nil) {
       [entry setObject:event.location forKey:@"location"];
     }
-    if (event.notes != nil) {
-      [entry setObject:event.notes forKey:@"message"];
+    if (event.notes != nil || event.URL != nil) {
+        NSString *notes = event.notes ?: @"";
+        NSString *url = @"";
+        if(event.URL != nil) {
+            url = event.URL.absoluteString;
+        }
+        NSString *notesWithURL = [NSString stringWithFormat:@"%@ %@", notes, url];
+        NSString *trimmed = [notesWithURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        [entry setObject:trimmed forKey:@"message"];
     }
     if (event.attendees != nil) {
       NSMutableArray * attendees = [[NSMutableArray alloc] init];
