@@ -1,0 +1,17 @@
+{
+    "moduleName": "CalendarPlugin",
+    "applicationNames": [
+        "CalendarPlugin",
+        "CalendarSampleApp"
+    ],
+    "testPipelineArgs": {
+        "plugin": "calendar",
+        "threads": "2"
+    },
+    "sauceLabsInfo": {
+        "CalendarSampleApp": {
+            "androidAPIKey": "B856C096BA7445979AB4BA559DDB08E5",
+            "iosAPIKey": "7819856977554EE5805CFB5CA170AE72"
+        }
+    }
+}
