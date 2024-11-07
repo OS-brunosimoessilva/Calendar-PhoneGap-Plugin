@@ -501,8 +501,10 @@
       
     NSInteger interval = [openDate timeIntervalSinceReferenceDate];
       
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"calshow:%ld", interval]];
-    [[UIApplication sharedApplication] openURL:url];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"calshow:%ld", interval]];
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    });
   }];
 }
 
